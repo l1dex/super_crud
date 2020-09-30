@@ -4,12 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "customer")
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,16 +20,18 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    private Set<Music> musicList;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
+        orphanRemoval = true,fetch = FetchType.EAGER)
+    private List<Music> musicList;
 
-    User(){}
 
-    public User(Long id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
+    Customer(){
+
     }
 
+    public Customer(String login, String password, List<Music> musicList) {
+        this.login = login;
+        this.password = password;
+        this.musicList = musicList;
+    }
 }

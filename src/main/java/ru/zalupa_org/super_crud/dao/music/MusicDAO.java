@@ -1,4 +1,4 @@
-package ru.zalupa_org.super_crud.dao.user;
+package ru.zalupa_org.super_crud.dao.music;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
