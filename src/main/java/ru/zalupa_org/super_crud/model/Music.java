@@ -19,15 +19,14 @@ public class Music implements Serializable {
     @Column(name = "author", nullable = false)
     private String author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private Customer customer;
 
-    public Music(Long id, String title, String author, User user) {
-        this.id = id;
+    public Music(String title, String author, Customer user) {
         this.title = title;
         this.author = author;
-        this.user = user;
+        this.customer = user;
     }
 
     public Music(){ }
