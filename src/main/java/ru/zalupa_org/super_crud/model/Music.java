@@ -19,7 +19,7 @@ public class Music implements Serializable {
     @Column(name = "author", nullable = false)
     private String author;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
     private Customer customer;
 
