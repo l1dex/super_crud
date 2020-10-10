@@ -21,11 +21,14 @@ public class Customer implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
-        orphanRemoval = true,fetch = FetchType.EAGER)
+        orphanRemoval = true)
     private List<Music> musicList;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column
+    private Role role;
 
-    Customer(){
+    public Customer(){
 
     }
 

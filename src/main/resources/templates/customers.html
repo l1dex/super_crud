@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Person</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!--/*@thymesVar id="customers" type="java.util.List<ru.zalupa_org.super_crud.model.Customer>"*/-->
+<div th:switch="${customers}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Login</th>
+                <th>Music list</th>
+            </tr>
+            </thead>
+            <div>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.getId()}"></td>
+                <td th:text="${customer.getLogin()}"></td>
+                <!--/*@thymesVar id="music" type="java.util.List<ru.zalupa_org.super_crud.model.Music>"*/-->
+                    <div th:with="music=${customer.getMusicList()}">
+                        <tr th:each="m:${music}">
+                            <td th:text="${m.getAuthor()}"></td>
+                            <td th:text="${m.getTitle()}"></td>
+                        </tr>
+                    </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>
