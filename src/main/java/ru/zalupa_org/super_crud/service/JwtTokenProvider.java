@@ -1,14 +1,17 @@
-package ru.zalupa_org.super_crud.security;
+package ru.zalupa_org.super_crud.service;
 
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import ru.zalupa_org.super_crud.dao.user.CustomerDAO;
+import ru.zalupa_org.super_crud.model.Customer;
+import ru.zalupa_org.super_crud.model.SecurityUser;
+import ru.zalupa_org.super_crud.model.exception.JwtAuthenticationException;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
@@ -19,14 +22,11 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
 
-    private final UserDetailsService userDetailsService;
-
-    public JwtTokenProvider(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+    private CustomerDAO customerDAO;
 
     @Value("${jwt.secret}")
     private String secret;
@@ -38,7 +38,6 @@ public class JwtTokenProvider {
     @PostConstruct
     protected void init(){
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
-
     }
 
     public String createToken(String login, String role){
@@ -65,7 +64,7 @@ public class JwtTokenProvider {
     }
 
     public Authentication getAuthentication(String token){
-        UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
+        UserDetails userDetails = SecurityUser.fromCustomer(customerDAO.findByLogin(getUsername(token)).orElse(new Customer()));
         return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
     }
 

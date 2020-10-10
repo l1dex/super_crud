@@ -1,16 +1,16 @@
-package ru.zalupa_org.super_crud.security;
+package ru.zalupa_org.super_crud.controller.filter;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import ru.zalupa_org.super_crud.model.exception.JwtAuthenticationException;
+import ru.zalupa_org.super_crud.service.JwtTokenProvider;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
-
-import static org.apache.logging.log4j.util.Strings.EMPTY;
 
 @Component
 public class JwtTokenFilter implements Filter {

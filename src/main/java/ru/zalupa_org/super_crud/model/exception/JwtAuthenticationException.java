@@ -1,4 +1,4 @@
-package ru.zalupa_org.super_crud.security;
+package ru.zalupa_org.super_crud.model.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

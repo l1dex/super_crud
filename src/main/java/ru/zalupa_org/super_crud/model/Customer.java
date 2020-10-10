@@ -1,11 +1,13 @@
 package ru.zalupa_org.super_crud.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "customer")
@@ -21,20 +23,17 @@ public class Customer implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
-        orphanRemoval = true)
+            orphanRemoval = true)
     private List<Music> musicList;
 
     @Enumerated(value = EnumType.STRING)
     @Column
     private Role role;
 
-    public Customer(){
-
-    }
-
-    public Customer(String login, String password, List<Music> musicList) {
+    public Customer(String login, String password, List<Music> musicList, Role role) {
         this.login = login;
         this.password = password;
         this.musicList = musicList;
+        this.role = role;
     }
 }

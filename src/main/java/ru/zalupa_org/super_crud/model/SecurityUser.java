@@ -1,14 +1,14 @@
-package ru.zalupa_org.super_crud.security;
+package ru.zalupa_org.super_crud.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.zalupa_org.super_crud.model.Customer;
 
 import java.util.Collection;
 import java.util.List;
+
 
 @Data
 public class SecurityUser implements UserDetails {
