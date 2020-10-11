@@ -20,9 +20,15 @@ public class Customer implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role",nullable = false)
+    private Role role;
+
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
         orphanRemoval = true,fetch = FetchType.EAGER)
     private List<Music> musicList;
+
 
 
     Customer(){
