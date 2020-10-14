@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import ru.zalupa_org.super_crud.aspect.Monitoring;
 import ru.zalupa_org.super_crud.model.Customer;
 import ru.zalupa_org.super_crud.model.Music;
 import ru.zalupa_org.super_crud.service.CustomerService;
@@ -22,6 +23,7 @@ public class ContentController {
         this.customerService = customerService;
     }
 
+    @Monitoring
     @GetMapping
     public ModelAndView contentPage(@ModelAttribute("m") Music music){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -3,6 +3,7 @@ package ru.zalupa_org.super_crud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.zalupa_org.super_crud.aspect.Monitoring;
 import ru.zalupa_org.super_crud.dao.music.MusicDAO;
 import ru.zalupa_org.super_crud.dao.user.CustomerDAO;
 import ru.zalupa_org.super_crud.model.Customer;
@@ -69,6 +70,7 @@ public class CustomerService {
         return customerDAO.findAllWithMusicList();
     }
 
+    @Monitoring
     public Customer findByLogin(String login){
         Optional<Customer> customer = customerDAO.findByLogin(login);
         return customer.orElse(null);
