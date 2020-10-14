@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Adding Person</title>
+</head>
+<body>
+<div th:if="${Exist}">
+    User with this login already exist!
+</div>
+<div th:if="${Role}">
+    This Role undefined
+</div>
+<form th:method="POST" th:action="@{/reg}" th:object="${customer}" >
+    <div>
+        <label>login</label>
+        <input type="text" placeholder="Enter Login" th:field="*{login}" id="login">
+
+        <br>
+
+        <label>Password</label>
+        <input type="text" placeholder="Enter Password" th:field="*{password}" id="password">
+
+        <br>
+
+        <label>Role</label>
+        <input type="text" placeholder="Enter Role" th:field="*{role}" id="role">
+
+        <button>Enter</button>
+    </div>
+</form>
+</body>
+</html>

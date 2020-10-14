@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Edit</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/content/edit/{id}(id=${music.getId()})}" th:object="${music}" >
+    <div>
+        <label>Title</label>
+        <input type="text" placeholder="Enter Title" th:field="*{title}" id="title">
+
+        <br>
+
+        <label>Author</label>
+        <input type="text" placeholder="Enter Author" th:field="*{author}" id="author">
+
+        <button>Enter</button>
+    </div>
+</form>
+</body>
+</html>

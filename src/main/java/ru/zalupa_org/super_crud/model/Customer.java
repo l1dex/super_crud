@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Entity
@@ -29,7 +31,9 @@ public class Customer implements Serializable {
         orphanRemoval = true,fetch = FetchType.EAGER)
     private List<Music> musicList;
 
-
+    public List<Music> getMusicList() {
+        return Optional.ofNullable(musicList).orElse(Collections.emptyList());
+    }
 
     Customer(){
 
