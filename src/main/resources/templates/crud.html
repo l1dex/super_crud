@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Login </th>
+        <th> Password </th>
+        <th> Role </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+        <td><span th:text="${customer.login}"> Login </span></td>
+        <td><span th:text="${customer.password}"> Password </span></td>
+        <td><span th:text="${customer.role}"> Role </span></td>
+        <td><a th:href="@{/crud/edit/{id}(id=${customer.id})}">Edit</a></td>
+        <td><a th:href="@{/crud/delete/{id}(id=${customer.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+Add new customer
+<form th:method="POST" th:action="@{/crud}" th:object="${c}" >
+    <div style="float: left">
+        <label>Login</label>
+        <input type="text" placeholder="Enter Login" th:field="*{login}" id="login">
+
+        <label>Role</label>
+        <input type="text" placeholder="Enter Role" th:field="*{role}" id="role">
+
+        <label>Password</label>
+        <input type="text" placeholder="Enter Password" th:field="*{password}" id="password">
+    </div>
+    <button>Enter</button>
+</form>
+</body>
+</html>

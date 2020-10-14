@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Edit</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/crud/edit/{id}(id=${c.id})}" th:object="${c}" >
+    <div>
+        <label>Login</label>
+        <input type="text" placeholder="Enter Login" th:field="*{login}" id="login">
+
+        <br>
+
+        <label>Password</label>
+        <input type="text" placeholder="Enter Password" th:field="*{password}" id="password">
+
+        <br>
+
+        <label>Role</label>
+        <input type="text" placeholder="Enter Role" th:field="*{role}" id="role">
+
+        <button>Enter</button>
+    </div>
+</form>
+</body>
+</html>

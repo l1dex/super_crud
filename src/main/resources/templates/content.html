@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Title </th>
+        <th> Author </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="music : ${musicList}">
+        <td><span th:text="${music.getTitle()}"> Title </span></td>
+        <td><span th:text="${music.getAuthor()}"> Author </span></td>
+        <td><a th:href="@{/content/edit/{id}(id=${music.getId()})}">Edit</a></td>
+        <td><a th:href="@{/content/delete/{id}(id=${music.getId()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+    Add new song
+<form th:method="POST" th:action="@{/content}" th:object="${m}" >
+    <div style="float: left">
+        <label>Title</label>
+        <input type="text" placeholder="Enter Title" th:field="*{title}" id="title">
+
+        <label>Author</label>
+        <input type="text" placeholder="Enter Author" th:field="*{author}" id="author">
+    </div>
+    <button>Enter</button>
+</form>
+</body>
+</html>
